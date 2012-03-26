@@ -77,7 +77,7 @@
                   - if @story.newswire.present?
                     = form.input :newswire_id, :as => :hidden
                   = form.input :caption, :input_html => { :rows => '10', :cols => '20' }
-                  = form.input :tags_string, :required => false, :hint => t('tags_hint')
+                  = form.input :tags_string, :required => false, :hint => t('tags_hint'), :as => :tags
                 = form.buttons do
                   = form.commit_button t('wizard.continue'), :wrapper_html => { :class => 'float-right' }, :button_html => { :class => 'button-input next' }
                   = form.commit_button t('wizard.post_now'), :wrapper_html => { :class => 'float-right' }, :button_html => { :class => 'button-input create' }

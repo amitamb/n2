@@ -38,6 +38,6 @@
                   = form.inputs do
                     = form.input :title, :label => t('predictions.new.prediction_group_title'), :hint => t('predictions.new.prediction_group_title_hint')
                     = form.input :description, :hint => t('wizard.details'), :required => false
-                    = form.input :tags_string, :label => t('tags'), :required => false, :hint => t('tags_hint')
+                    = form.input :tags_string, :label => t('tags'), :required => false, :hint => t('tags_hint'), :as => :tags
                 = form.buttons do
                   = form.commit_button t('wizard.submit'), :wrapper_html => { :class => 'float-right' }, :button_html => { :class => 'button-input' }

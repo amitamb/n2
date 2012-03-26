@@ -124,6 +124,8 @@ N2::Application.routes.draw do
   match '/classifieds/:id/set_status/:status.:format' => 'classifieds#set_status', :as => :set_status_classified
   match '/classifieds/category/:category.:format' => 'classifieds#categories', :as => :categorized_classifieds
   match '/classifieds/category/:category/page/:page.:format' => 'classifieds#categories', :as => :categorized_classifieds_with_page
+  
+  match '/tags/suggest' => 'tags#suggest', :as => :tags_suggest
 
   resources :users do
     collection do

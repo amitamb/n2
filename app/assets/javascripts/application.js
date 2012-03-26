@@ -682,3 +682,132 @@ function shareEventHandler(event) {
   }
 }
 addthis.addEventListener('addthis.menu.share',shareEventHandler);
+
+(function($){
+	$("ul.tags_input").each(function(){
+		
+		var $e = $(this);
+		var $hidden_input = $e.prev("input");
+		
+		function getTagHtml(t){
+			var $li = $("<li class='tag'><span class='txt'></span><img src='/assets/site/btn-close.gif' /><span style='clear:both;'></span></li>");
+			$li.find("span.txt").text(t);
+			return $li;
+		}
+		
+		function getTagsList(){
+			var tags_str = $hidden_input.val();
+			if ( tags_str.length == 0 ) { return []; }
+			var tags = tags_str.split(",");
+			return tags;
+		}
+
+		function setTagsList(tags){
+			$hidden_input.val(tags.join(","));
+		}
+		
+		function addTagUI(tag_str){
+			$e.find("li.tag_input").before(getTagHtml(tag_str));
+		}
+		
+		function removeTagUI($tag_li){
+			$tag_li.remove();
+		}
+
+		function addTag(tag_str){
+			tag_str = $.trim( tag_str );
+			if (tag_str=="") {
+				return;
+			}
+			var tags = getTagsList();
+			var found = false;
+			var tag_str_l = tag_str.toLowerCase();
+			for (var i=0,len=tags.length;i<len;i++) {
+				var t = tags[i];
+				if ( t.toLowerCase() == tag_str_l ) {
+					found = true;
+					break;
+				}
+			}
+			if (!found){
+				tags.push(tag_str);
+				setTagsList(tags);
+				addTagUI(tag_str);
+				autocomplete.fixPosition();
+			}
+		}
+		
+		function removeTag($tag_elem){
+			var tag_str = $tag_elem.find("span.txt").text();
+			var tags = getTagsList();
+			for (var i=0,len=tags.length;i<len;i++) {
+				var t = tags[i];
+				if ( t == tag_str ) {
+					tags.splice(i, 1)
+					break;
+				}
+			}
+			setTagsList(tags);
+			removeTagUI($tag_elem);
+			autocomplete.fixPosition();
+		}
+
+		var tags = getTagsList();
+
+		for ( var i = 0, len = tags.length; i < len ; i++ ) {
+			var t = tags[i];
+			addTagUI(t);
+		}
+
+		$e.append("<li class='tag_input'><input type='text' /></li>");
+		$e.append("<div style='clear:both;'></div>");
+		$e.click(function(e){
+			if ( $(e.target).is("ul") ) {
+				$(this).find("li>input").focus();
+			}
+		});
+		$e.delegate("li.tag>img", "click", function(){
+			var $this = $(this);
+			removeTag($this.parents("li.tag"));
+		});
+		$e.find("li>input").keydown(function(e){
+			var $this = $(this);
+			if ( ( e.which == 9 && $this.val() != "" ) || e.which == 188 || e.which == 186 || e.which == 13) {
+				var t= $this.val();
+				addTag(t);
+				$this.val("");
+				return false;
+			} else if ( e.which == 8 && $this.val() == "" ) { // backspace
+				document.title = "Backspace";
+				var $last_li_tag = $e.find("li.tag:last");
+				if ( $last_li_tag.length > 0 ) {
+					removeTag($last_li_tag);
+				}
+			}
+		});
+		$e.find("li>input").focusout(function(e){
+			var $this = $(this);
+			if ( $this.val() ) {
+				var t= $this.val();
+				addTag(t);
+				$this.val("");
+			}
+		});
+
+		var autocomplete = $e.find("li>input").autocomplete({
+			// callback function:
+			onSelect: function(value, data){
+				$this = $e.find("li>input");
+				var t= $this.val();
+				addTag(t);
+				$this.val("");
+				$this.focus();
+				return false;
+			},
+			serviceUrl:'/tags/suggest',
+			deferRequestBy: 100, //miliseconds
+			//lookup: ['January', 'February', 'March', 'April', 'May'] //local lookup values
+		});
+
+	});
+})(jQuery);

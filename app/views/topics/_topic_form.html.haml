@@ -1,5 +1,5 @@
 = form.inputs do
   = form.input :title
   = form.input :body, :as => :text, :input_html => { :rows => '10', :cols => '60' }
-  = form.input :tags_string, :required => false, :hint => t('tags_hint')
+  = form.input :tags_string, :required => false, :hint => t('tags_hint'), :as => :tags
 
