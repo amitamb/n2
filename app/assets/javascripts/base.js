@@ -12,3 +12,4 @@
 //= require jquery.timeago
 //= require jquery-ui-1.8.5.custom.effects.min
 //= require jquery.prettyPhoto
+//= require jquery.autocomplete

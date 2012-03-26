@@ -64,7 +64,7 @@
                     = form.input :title, :label => t('.title'), :hint => t('.hint_idea_title')
                     = form.input :details, :hint => t('.hint_idea_details'), :required => false
                     = form.input :idea_board, :label => t('.idea_board'), :required => true, :include_blank => false, :hint => t('.hint_idea_boards')
-                    = form.input :tags_string, :label => t('tags'), :required => false, :hint => t('tags_hint')
+                    = form.input :tags_string, :label => t('tags'), :required => false, :hint => t('tags_hint'), :as => :tags
                 = form.buttons do
                   = form.commit_button t('wizard.continue'), :wrapper_html => { :class => 'float-right' }, :button_html => { :class => 'button-input next' }
                   = form.commit_button t('wizard.post_now'), :wrapper_html => { :class => 'float-right' }, :button_html => { :class => 'button-input' }

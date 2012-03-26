@@ -65,6 +65,6 @@
                     = form.input :list_of_choices, :label => t('predictions.suggested_choices'), :required => true, :hint => t('predictions.suggested_choices_hint'), :wrapper_html => { :class => 'question-values choices hidden' }
                     = form.input :start_range, :wrapper_html => { :class => 'question-values range hidden' }
                     = form.input :end_range, :wrapper_html => { :class => 'question-values range hidden' }
-                    = form.input :tags_string, :label => t('tags'), :required => false, :hint => t('tags_hint')
+                    = form.input :tags_string, :label => t('tags'), :required => false, :hint => t('tags_hint'), :as => :tags
                 = form.buttons do
                   = form.commit_button t('wizard.submit'), :wrapper_html => { :class => 'float-right' }, :button_html => { :class => 'button-input' }

@@ -11,7 +11,7 @@
             = form.input :title
             = form.input :description, :input_html => { :rows => 5 }
             = form.input :is_public, :required => false, :hint => t('galleries.public_hint')
-            = form.input :tag_list, :label => t('tags'), :required => false, :hint => t('tags_hint')
+            = form.input :tags_string, :label => t('tags'), :required => false, :hint => t('tags_hint'), :as => :tags
           - @gallery.gallery_items.build if @gallery.gallery_items.empty?
           = form.semantic_fields_for :gallery_items do |item_form|
             - if @enable_file_uploads

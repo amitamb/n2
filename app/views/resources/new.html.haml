@@ -71,7 +71,7 @@
               .panel2
                 = form.inputs do
                   = form.input :details, :input_html => { :rows => 5 },:required => false, :label => t('.label_details'),:hint =>t('.hint_details')
-                  = form.input :tags_string, :required => false, :label => t('tags'),:hint => t('tags_hint')
+                  = form.input :tags_string, :required => false, :label => t('tags'),:hint => t('tags_hint'), :as => :tags
                   = form.input :mapUrl, :label => t('.label_map'), :hint =>t('.hint_map'),:required => false
                   = form.input :twitterName, :label => t('.label_twitter'), :hint=>t('.hint_twitter'), :required => false
                 = form.buttons do

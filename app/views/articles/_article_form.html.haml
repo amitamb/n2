@@ -7,7 +7,7 @@
 
     - content_form.inputs do
       = content_form.input :url, :required => false, :hint => t('article_url_hint')
-      = content_form.input :tags_string, :required => false, :hint => t('tags_hint')
+      = content_form.input :tags_string, :required => false, :hint => t('tags_hint'), :as => :tags
       #scrollbox
         %a.prev.browse.left_scroll
         .scrollable

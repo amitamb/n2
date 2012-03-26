@@ -76,7 +76,7 @@
                 = form.semantic_fields_for :content do |content_form|
                   = content_form.inputs do
                     = content_form.input :url, :required => false, :label => t('article_url_label'),  :hint => t('article_url_hint')
-                    = content_form.input :tags_string, :required => false, :hint => t('tags_hint')
+                    = content_form.input :tags_string, :required => false, :hint => t('tags_hint'), :as => :tags
                     #article_status= label_tag :status, t('articles.status')
                     = select_tag :is_draft, options_for_select( { t('articles.draft') => 1, t('articles.publish') => 0  }, (@article.is_draft ? 1 : 0) )
                 = form.buttons do
