@@ -31,7 +31,8 @@ module N2
               m/jqt/theme
               ui-lightness/jquery-ui-1.7.2.custom
               m/jqtouch
-              jquery.wysiwyg ).map { |f| "#{f}.css" }
+              jquery.wysiwyg
+              tags_input ).map { |f| "#{f}.css" }
     config.assets.precompile += css
 
     config.assets.precompile << '*.js'
